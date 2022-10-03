@@ -8,6 +8,7 @@
 
 import UIKit
 import NaturalLanguage
+import CoreML
 
 class ViewController: UIViewController {
 
@@ -26,7 +27,7 @@ class ViewController: UIViewController {
     
     @IBAction func validateButtonTapped(_ sender: Any) {
         do {
-            let sentimentPredictor = try NLModel(mlModel: SentimentClassifier().model)
+            let sentimentPredictor = try NLModel(mlModel: SentimentClassifier(configuration: MLModelConfiguration()).model)
             let result = sentimentPredictor.predictedLabel(for: reviewInputTextView.text)
             
             if result == "Positive" {
